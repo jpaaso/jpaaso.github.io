@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="store">
+  <head>
+    <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css" />
+    <script type="text/javascript" src="lib/js/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </head>
+  <body class="container" ng-controller="StoreController as store">
+    <div>
+      <h1 style="float:left">Catalog</h1>
+      <button ng-show="getCart().length"
+          class="btn btn-success pull-right" 
+          style="margin-top:25px">
+        Checkout {{getCartPrice()}} &euro; 
+      </button>
+    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>&euro;</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <div>
+        <tr ng-repeat="product in products" 
+            ng-class="{'success' : product.inCart}"
+            ng-click="changeInCartState(product)"
+            ng-model="checked">
+        	<td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.description}}</td>
+          <td width="30%">
+            <input type="checkbox" class="pull-right" ng-model="product.inCart"/>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+  </body>
+</html>
+
